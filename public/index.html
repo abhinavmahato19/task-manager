@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B1322" />
+  <meta name="color-scheme" content="dark" />
+  <title>Focus · Tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bloom bloom-amber" aria-hidden="true"></div>
+  <div class="bloom bloom-teal" aria-hidden="true"></div>
+
+  <div class="layout">
+    <aside class="rail glass">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Focus</div>
+
+      <nav class="nav" aria-label="Views">
+        <button type="button" class="nav-item active" data-view="today">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Today</span><span class="count"></span>
+        </button>
+        <button type="button" class="nav-item" data-view="upcoming">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span>Upcoming</span><span class="count"></span>
+        </button>
+        <button type="button" class="nav-item" data-view="inbox">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l2.5-7.5A2 2 0 0 1 7.4 4h9.2a2 2 0 0 1 1.9 1.5L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1 2h6l1-2h5"/></svg>
+          <span>Inbox</span><span class="count"></span>
+        </button>
+        <button type="button" class="nav-item" data-view="tags">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>
+          <span>Tags</span><span class="count"></span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <form id="quick-add" class="quick glass" autocomplete="off">
+        <input id="task-input" class="quick-input" type="text" maxlength="500"
+          placeholder="Add a task, use #tags to group it" aria-label="Task text"
+          enterkeyhint="done" required />
+        <div class="quick-row">
+          <div class="pills" role="radiogroup" aria-label="Priority">
+            <label class="pill" data-p="low"><input type="radio" name="priority" value="low" /><span>Low</span></label>
+            <label class="pill" data-p="medium"><input type="radio" name="priority" value="medium" checked /><span>Medium</span></label>
+            <label class="pill" data-p="high"><input type="radio" name="priority" value="high" /><span>High</span></label>
+          </div>
+          <input id="due-date" class="date-input" type="date" aria-label="Due date" />
+          <button type="submit" class="add-btn">Add task</button>
+        </div>
+      </form>
+
+      <section class="summary glass">
+        <div>
+          <h1 id="view-title">Today</h1>
+          <p id="subtitle" class="subtitle"></p>
+        </div>
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 64 64" aria-hidden="true">
+            <circle class="ring-track" cx="32" cy="32" r="28" />
+            <circle id="ring-fill" class="ring-fill" cx="32" cy="32" r="28" />
+          </svg>
+          <span id="ring-label" class="ring-label">–</span>
+        </div>
+      </section>
+
+      <div id="tag-row" class="tag-row hidden"></div>
+
+      <ul id="task-list" class="task-list"></ul>
+      <p id="empty" class="empty" aria-live="polite"></p>
+    </main>
+  </div>
+
+  <div id="toast" class="toast glass hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
